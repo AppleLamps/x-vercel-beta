@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# X.com Mock — Websites in Container
 
-## Getting Started
+A faithful recreation of X.com's desktop interface showcasing a concept feature: **hosting static websites directly inside post media containers**.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ The Concept
+
+This project demonstrates how X (formerly Twitter) could host entire static websites within the media container of posts. Instead of linking out to external sites, users can scroll through and interact with full websites directly in their feed.
+
+**Demo features:**
+
+- A main feed post containing an embedded SpaceX Lunar Voyager landing page
+- Full scroll and interaction within the iframe container
+- Seamless integration with the native X UI
+
+## 🚀 Features
+
+- **Pixel-Perfect UI**: Faithful recreation of X's desktop interface
+- **Interactive Website Container**: `iframe` within post media allows embedded sites to be scrolled independently
+- **Static Site Demo**: SpaceX Lunar Voyager product announcement as embedded content
+- **Light Mode Design**: Clean, modern theme matching X's current design
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Main layout
+│   ├── globals.css           # Global styles
+│   └── embedded-site/
+│       └── page.tsx          # The embedded static website
+├── components/
+│   ├── Sidebar.tsx           # Navigation sidebar
+│   ├── Feed.tsx              # Main timeline with posts
+│   ├── Post.tsx              # Post component with verified badges
+│   ├── RightSidebar.tsx      # Search, trending, suggestions
+│   └── WebsiteContainer.tsx  # iframe container for embedded sites
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run development server
+npm run dev
 
-## Learn More
+# Build for production
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Deploy on Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/x-vercel)
 
-## Deploy on Vercel
+Or deploy via CLI:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm i -g vercel
+vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+
+MIT
