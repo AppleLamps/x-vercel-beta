@@ -6,13 +6,14 @@ import { MobileBottomNav } from '@/components/MobileBottomNav';
 
 export default function Home() {
   return (
-    <div className="flex justify-center min-h-screen bg-white text-black">
+    <div className="flex justify-center min-h-screen min-h-dvh bg-white text-black">
       <MobileHeader />
       <div className="flex w-full max-w-[1265px]">
         <header className="flex-shrink-0">
           <Sidebar />
         </header>
-        <main className="flex-grow flex justify-center ml-0 md:ml-[68px] xl:ml-[275px] pt-12 md:pt-0 pb-16 md:pb-0">
+        {/* Main content area - uses mobile-content-area class for safe area padding on mobile only */}
+        <main className="flex-grow flex justify-center ml-0 md:ml-[68px] xl:ml-[275px] mobile-content-area md:pt-0 md:pb-0">
           <Feed />
           <RightSidebar />
         </main>
