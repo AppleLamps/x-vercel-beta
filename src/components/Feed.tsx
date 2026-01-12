@@ -6,11 +6,13 @@ import Image from 'next/image';
 export const Feed = () => {
     return (
         <div className="flex-grow border-r border-gray-200 max-w-[680px] min-h-screen">
-            <div className="sticky top-0 bg-white/80 backdrop-blur-md z-10 border-b border-gray-200">
-                <h1 className="px-4 py-3 font-bold text-xl">Home</h1>
-                <div className="flex w-full cursor-pointer">
-                    <div className="w-1/2 text-center py-4 font-bold border-b-4 border-blue-500 hover:bg-gray-100 transition">For you</div>
-                    <div className="w-1/2 text-center py-4 text-gray-500 hover:bg-gray-100 transition">Following</div>
+            <div className="sticky top-12 md:top-0 bg-white/80 backdrop-blur-md z-10 border-b border-gray-200">
+                <h1 className="hidden md:block px-4 py-3 font-bold text-xl">Home</h1>
+                <div className="flex w-full cursor-pointer overflow-x-auto scrollbar-hide">
+                    <div className="flex-1 min-w-fit text-center py-4 font-bold border-b-4 border-blue-500 hover:bg-gray-100 transition px-4 whitespace-nowrap">For you</div>
+                    <div className="flex-1 min-w-fit text-center py-4 text-gray-500 hover:bg-gray-100 transition px-4 whitespace-nowrap">Following</div>
+                    <div className="flex-1 min-w-fit text-center py-4 text-gray-500 hover:bg-gray-100 transition px-4 whitespace-nowrap md:hidden">Subscribed</div>
+                    <div className="flex-1 min-w-fit text-center py-4 text-gray-500 hover:bg-gray-100 transition px-4 whitespace-nowrap md:hidden">X Premium</div>
                 </div>
             </div>
 
