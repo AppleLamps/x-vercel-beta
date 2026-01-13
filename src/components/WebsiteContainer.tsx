@@ -10,7 +10,7 @@ export const WebsiteContainer = ({ url }: WebsiteContainerProps) => {
             <div className="w-full relative group">
                 <iframe
                     src={url}
-                    className="w-full border-none h-[565px] sm:h-[690px] md:h-[815px] landscape:h-[440px]"
+                    className="w-full border-none h-[680px] sm:h-[830px] md:h-[980px] landscape:h-[530px]"
                     title="Embedded Website"
                     style={{ display: 'block' }}
                     loading="lazy"
