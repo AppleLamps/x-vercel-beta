@@ -29,9 +29,9 @@ export const RightSidebar = () => {
             <div className="border border-gray-200 rounded-2xl mt-3">
                 <h2 className="font-bold text-xl px-4 py-3">Live on X</h2>
                 {[
-                    { name: "SpaceX", handle: "SpaceX", desc: "Starship Flight Test 8 Pre-Launch Briefing", viewers: "+48.2K", color: "bg-black" },
-                    { name: "Lex Fridman", handle: "lexfridman", desc: "Interview with Elon Musk on Mars Colony Plans", viewers: "+22.1K", color: "bg-purple-600" },
-                    { name: "NASA", handle: "NASA", desc: "Artemis III Mission Update Live", viewers: "+15.8K", color: "bg-blue-600" },
+                    { name: "SpaceX", handle: "SpaceX", desc: "Starship Flight Test 8 Pre-Launch Briefing", viewers: "+48.2K", color: "bg-black", textColor: "text-white" },
+                    { name: "Lex Fridman", handle: "lexfridman", desc: "Interview with Elon Musk on Mars Colony Plans", viewers: "+22.1K", color: "bg-purple-600", textColor: "text-white" },
+                    { name: "NASA", handle: "NASA", desc: "Artemis III Mission Update Live", viewers: "+15.8K", color: "bg-orange-500", textColor: "text-white" },
                 ].map((item, i) => (
                     <div key={i} className="hover:bg-gray-50 px-4 py-3 cursor-pointer transition">
                         <div className="flex items-center gap-1 text-[15px]">
@@ -39,13 +39,13 @@ export const RightSidebar = () => {
                             <VerifiedBadge />
                             <span className="text-gray-500">is hosting</span>
                         </div>
-                        <div className="flex items-center justify-between mt-1">
-                            <div className="text-[15px] text-black pr-3">{item.desc}</div>
-                            <div className="relative flex-shrink-0">
-                                <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center text-white font-bold text-sm`}>
+                        <div className="flex items-start justify-between gap-3 mt-1">
+                            <div className="text-[15px] text-black flex-1 leading-tight">{item.desc}</div>
+                            <div className="relative flex-shrink-0 mt-1">
+                                <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center ${item.textColor} font-bold text-lg`}>
                                     {item.name.charAt(0)}
                                 </div>
-                                <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
+                                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md whitespace-nowrap">
                                     {item.viewers}
                                 </div>
                             </div>
