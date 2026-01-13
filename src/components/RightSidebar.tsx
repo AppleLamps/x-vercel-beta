@@ -30,7 +30,6 @@ export const RightSidebar = () => {
                 <h2 className="font-bold text-xl px-4 py-3">Live on X</h2>
                 {[
                     { name: "SpaceX", handle: "SpaceX", desc: "Starship Flight Test 8 Pre-Launch Briefing", viewers: "+48.2K", color: "bg-black", textColor: "text-white" },
-                    { name: "Lex Fridman", handle: "lexfridman", desc: "Interview with Elon Musk on Mars Colony Plans", viewers: "+22.1K", color: "bg-purple-600", textColor: "text-white" },
                     { name: "NASA", handle: "NASA", desc: "Artemis III Mission Update Live", viewers: "+15.8K", color: "bg-orange-500", textColor: "text-white" },
                 ].map((item, i) => (
                     <div key={i} className="hover:bg-gray-50 px-4 py-3 cursor-pointer transition">
