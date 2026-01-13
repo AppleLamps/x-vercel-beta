@@ -1,37 +1,101 @@
-import React from 'react';
+'use client';
+
+import React, { useRef, useState, useEffect } from 'react';
 import { Post } from './Post';
 import { Image as ImageIcon, Smile, MapPin, List, Link2 } from 'lucide-react';
 import Image from 'next/image';
+import { useHaptics } from '@/hooks/useHaptics';
+
+// Hook for horizontal scroll position detection
+const useHorizontalScroll = (ref: React.RefObject<HTMLElement | null>) => {
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    useEffect(() => {
+        const element = ref.current;
+        if (!element) return;
+
+        const checkScroll = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = element;
+            setCanScrollLeft(scrollLeft > 5);
+            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
+        };
+
+        checkScroll();
+        element.addEventListener('scroll', checkScroll, { passive: true });
+        window.addEventListener('resize', checkScroll);
+
+        return () => {
+            element.removeEventListener('scroll', checkScroll);
+            window.removeEventListener('resize', checkScroll);
+        };
+    }, [ref]);
+
+    return { canScrollLeft, canScrollRight };
+};
 
 // Tab button component for consistent touch targets
-const TabButton = ({ active, children }: { active?: boolean; children: React.ReactNode }) => (
+const TabButton = ({ active, children, onPress }: { active?: boolean; children: React.ReactNode; onPress?: () => void }) => (
     <button
-        className={`flex-1 min-w-fit text-center py-4 px-4 whitespace-nowrap transition-colors active:bg-gray-100 ${
+        className={`flex-1 min-w-fit text-center py-4 px-4 whitespace-nowrap transition-colors active:bg-gray-100 touch-manipulation snap-start ${
             active
                 ? 'font-bold border-b-4 border-blue-500'
                 : 'text-gray-500 hover:bg-gray-100'
         }`}
         role="tab"
         aria-selected={active}
+        onClick={onPress}
     >
         {children}
     </button>
 );
 
 export const Feed = () => {
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const { canScrollLeft, canScrollRight } = useHorizontalScroll(tabsRef);
+    const { selectionChanged } = useHaptics();
+
+    const handleTabPress = () => {
+        selectionChanged();
+    };
+
     return (
         <div className="flex-grow border-r border-gray-200 max-w-[680px] min-h-screen w-full">
             {/* Sticky header with safe area awareness */}
             <div className="sticky top-0 md:top-0 bg-white/85 backdrop-blur-lg z-10 border-b border-gray-200 sticky-below-header">
                 {/* Desktop title - hidden on mobile since MobileHeader has the logo */}
                 <h1 className="hidden md:block px-4 py-3 font-bold text-xl">Home</h1>
-                {/* Tab navigation */}
-                <nav className="flex w-full overflow-x-auto scrollbar-hide" role="tablist" aria-label="Feed filters">
-                    <TabButton active>For you</TabButton>
-                    <TabButton>Following</TabButton>
-                    <TabButton>Subscribed</TabButton>
-                    <TabButton>X Premium</TabButton>
-                </nav>
+                {/* Tab navigation with scroll indicators */}
+                <div className="relative">
+                    {/* Left fade indicator */}
+                    <div
+                        className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white/95 to-transparent z-10 pointer-events-none transition-opacity duration-200 md:hidden ${
+                            canScrollLeft ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        aria-hidden="true"
+                    />
+
+                    {/* Scrollable tabs */}
+                    <nav
+                        ref={tabsRef}
+                        className="flex w-full overflow-x-auto scrollbar-hide scroll-smooth snap-x"
+                        role="tablist"
+                        aria-label="Feed filters"
+                    >
+                        <TabButton active onPress={handleTabPress}>For you</TabButton>
+                        <TabButton onPress={handleTabPress}>Following</TabButton>
+                        <TabButton onPress={handleTabPress}>Subscribed</TabButton>
+                        <TabButton onPress={handleTabPress}>X Premium</TabButton>
+                    </nav>
+
+                    {/* Right fade indicator */}
+                    <div
+                        className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white/95 to-transparent z-10 pointer-events-none transition-opacity duration-200 md:hidden ${
+                            canScrollRight ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        aria-hidden="true"
+                    />
+                </div>
             </div>
 
             {/* Post composer - hidden on mobile, use FAB instead */}

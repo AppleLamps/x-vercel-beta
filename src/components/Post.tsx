@@ -50,12 +50,14 @@ const StatButton = ({
     icon: Icon,
     count,
     hoverColor,
-    label
+    label,
+    hideCountOnMobile = false
 }: {
     icon: React.ComponentType<{ className?: string }>;
     count?: string | number;
     hoverColor: string;
     label: string;
+    hideCountOnMobile?: boolean;
 }) => {
     const hoverClasses: Record<string, string> = {
         blue: 'hover:text-blue-400 active:text-blue-400',
@@ -70,14 +72,16 @@ const StatButton = ({
 
     return (
         <button
-            className={`flex items-center group cursor-pointer ${hoverClasses[hoverColor]}`}
+            className={`flex items-center group cursor-pointer touch-manipulation ${hoverClasses[hoverColor]}`}
             aria-label={`${count || 0} ${label}`}
         >
             <div className={`p-2 rounded-full transition ${bgClasses[hoverColor]}`}>
                 <Icon className="w-[18px] h-[18px]" />
             </div>
             {count !== undefined && (
-                <span className="text-[13px] tabular-nums">{typeof count === 'number' ? formatNumber(count) : count}</span>
+                <span className={`text-[13px] tabular-nums ${hideCountOnMobile ? 'hidden sm:inline' : ''}`}>
+                    {typeof count === 'number' ? formatNumber(count) : count}
+                </span>
             )}
         </button>
     );
@@ -124,16 +128,18 @@ export const Post = ({ displayName, username, avatar, avatarImage, squareAvatar 
 
                     {websiteUrl && <WebsiteContainer url={websiteUrl} />}
 
-                    {/* Stats row - responsive grid for mobile */}
-                    <div className="flex items-center justify-between mt-3 text-gray-500 -ml-2">
+                    {/* Stats row - responsive for narrow screens */}
+                    <div className="flex items-center justify-between mt-3 text-gray-500 -ml-2 gap-1">
                         <StatButton icon={MessageCircle} count={stats.comments} hoverColor="blue" label="replies" />
                         <StatButton icon={Repeat} count={stats.reposts} hoverColor="green" label="reposts" />
                         <StatButton icon={Heart} count={stats.likes} hoverColor="pink" label="likes" />
-                        <StatButton icon={BarChart2} count={stats.views} hoverColor="blue" label="views" />
+                        <div className="max-xs:hidden">
+                            <StatButton icon={BarChart2} count={stats.views} hoverColor="blue" label="views" />
+                        </div>
                         <div className="flex items-center">
-                            <StatButton icon={Bookmark} count={stats.bookmarks} hoverColor="blue" label="bookmarks" />
+                            <StatButton icon={Bookmark} count={stats.bookmarks} hoverColor="blue" label="bookmarks" hideCountOnMobile />
                             <button
-                                className="p-2 rounded-full hover:bg-blue-400/10 active:bg-blue-400/10 hover:text-blue-400 active:text-blue-400 transition"
+                                className="p-2 rounded-full hover:bg-blue-400/10 active:bg-blue-400/10 hover:text-blue-400 active:text-blue-400 transition touch-manipulation"
                                 aria-label="Share"
                             >
                                 <Upload className="w-[18px] h-[18px]" />

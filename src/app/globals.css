@@ -96,3 +96,111 @@ body {
     top: calc(var(--safe-area-inset-top) + 56px);
   }
 }
+
+/* ============================================
+   MOBILE UI ENHANCEMENTS FOR IPHONE 16/17/18
+   ============================================ */
+
+/* Extra small breakpoint (360px) for iPhone SE and narrow devices */
+@media (min-width: 360px) {
+  .xs\:flex {
+    display: flex;
+  }
+  .xs\:hidden {
+    display: none;
+  }
+  .xs\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+  .xs\:inline {
+    display: inline;
+  }
+}
+
+/* Hide on extra small screens */
+@media (max-width: 359px) {
+  .max-xs\:hidden {
+    display: none;
+  }
+}
+
+/* Landscape orientation utilities */
+@media (orientation: landscape) {
+  .landscape\:hidden {
+    display: none !important;
+  }
+  .landscape\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .landscape\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .landscape\:p-3 {
+    padding: 0.75rem;
+  }
+  .landscape\:right-3 {
+    right: 0.75rem;
+  }
+  .landscape\:w-6 {
+    width: 1.5rem;
+  }
+  .landscape\:h-6 {
+    height: 1.5rem;
+  }
+  .landscape\:w-5 {
+    width: 1.25rem;
+  }
+  .landscape\:h-5 {
+    height: 1.25rem;
+  }
+  .landscape\:w-7 {
+    width: 1.75rem;
+  }
+  .landscape\:h-7 {
+    height: 1.75rem;
+  }
+
+  /* Safe area for landscape (side notches) */
+  .landscape-safe {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+}
+
+/* Landscape with limited height (phone in landscape) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobile-content-area {
+    padding-top: calc(var(--safe-area-inset-top) + 44px);
+    padding-bottom: calc(var(--safe-area-inset-bottom) + 50px);
+  }
+
+  .landscape\:h-\[250px\] {
+    height: 250px !important;
+  }
+}
+
+/* Touch enhancement utilities */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.no-context-menu {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Smooth scroll and snap for tabs */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
