@@ -3,6 +3,7 @@ import { Feed } from '@/components/Feed';
 import { RightSidebar } from '@/components/RightSidebar';
 import { MobileHeader } from '@/components/MobileHeader';
 import { MobileBottomNav } from '@/components/MobileBottomNav';
+import { Feather, Mail } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -19,6 +20,22 @@ export default function Home() {
         </main>
       </div>
       <MobileBottomNav />
+
+      {/* Floating action buttons - desktop only */}
+      <div className="hidden lg:flex fixed bottom-6 right-6 flex-col gap-3 z-50">
+        <button
+          className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition"
+          aria-label="Compose"
+        >
+          <Feather className="w-6 h-6 text-white" />
+        </button>
+        <button
+          className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition"
+          aria-label="Messages"
+        >
+          <Mail className="w-6 h-6 text-white" />
+        </button>
+      </div>
     </div>
   );
 }

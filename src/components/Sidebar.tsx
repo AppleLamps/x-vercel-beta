@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Search, Bell, Mail, Users, User, MoreHorizontal, Feather, Bookmark, Sparkles, MessageSquare } from 'lucide-react';
+import { Home, Search, Bell, MessageSquare, Users, User, MoreHorizontal, Feather, Bookmark, Sparkles, Video } from 'lucide-react';
 import Image from 'next/image';
 
 const SidebarItem = ({ icon: Icon, text, active, customIcon }: { icon?: any, text: string, active?: boolean, customIcon?: React.ReactNode }) => (
@@ -13,8 +13,12 @@ const XPremiumIcon = () => (
     <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
 );
 
-const GrokIcon = () => (
+const SuperGrokIcon = () => (
     <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current"><g><path d="M2.205 7.423L11.745 21h4.241L6.446 7.423H2.204zm4.237 7.541L2.2 21h4.243l2.12-3.04-2.121-2.996zM16.957 0L9.624 10.518l2.086 2.953L21.2 0h-4.243zm.757 7.218V21H21.7V2.559l-3.986 4.66z"></path></g></svg>
+);
+
+const CreatorStudioIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current"><g><path d="M3.75 2C3.336 2 3 2.335 3 2.75v18.5c0 .415.336.75.75.75H6V2H3.75zM8 2v20h12.25c.414 0 .75-.335.75-.75V2.75c0-.415-.336-.75-.75-.75H8zm5 6.75c0-.414.336-.75.75-.75h4.5c.414 0 .75.336.75.75s-.336.75-.75.75h-4.5c-.414 0-.75-.336-.75-.75zm0 3.5c0-.414.336-.75.75-.75h4.5c.414 0 .75.336.75.75s-.336.75-.75.75h-4.5c-.414 0-.75-.336-.75-.75zM8.75 12c-.414 0-.75.336-.75.75v4.5c0 .414.336.75.75.75h2.5c.414 0 .75-.336.75-.75v-4.5c0-.414-.336-.75-.75-.75h-2.5z"></path></g></svg>
 );
 
 export const Sidebar = () => {
@@ -28,11 +32,12 @@ export const Sidebar = () => {
                 <SidebarItem icon={Home} text="Home" active />
                 <SidebarItem icon={Search} text="Explore" />
                 <SidebarItem icon={Bell} text="Notifications" />
-                <SidebarItem icon={Mail} text="Messages" />
-                <SidebarItem customIcon={<GrokIcon />} text="Grok" />
-                <SidebarItem icon={Bookmark} text="Bookmarks" />
-                <SidebarItem icon={Users} text="Communities" />
+                <SidebarItem icon={MessageSquare} text="Chat" />
+                <SidebarItem customIcon={<SuperGrokIcon />} text="SuperGrok" />
                 <SidebarItem customIcon={<XPremiumIcon />} text="Premium" />
+                <SidebarItem icon={Bookmark} text="Bookmarks" />
+                <SidebarItem customIcon={<CreatorStudioIcon />} text="Creator Studio" />
+                <SidebarItem icon={Users} text="Communities" />
                 <SidebarItem icon={User} text="Profile" />
                 <SidebarItem icon={MoreHorizontal} text="More" />
             </nav>

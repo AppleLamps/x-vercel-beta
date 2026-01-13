@@ -45,7 +45,7 @@ export const RightSidebar = () => {
                                 <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center text-white font-bold text-sm`}>
                                     {item.name.charAt(0)}
                                 </div>
-                                <div className="absolute -bottom-1 -right-1 bg-pink-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                                <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
                                     {item.viewers}
                                 </div>
                             </div>
