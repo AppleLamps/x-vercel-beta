@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, Repeat, Heart, BarChart2, MoreHorizontal, Bookmark, Upload } from 'lucide-react';
 import { WebsiteContainer } from './WebsiteContainer';
+import { JSONShowcase } from './JSONShowcase';
 import Image from 'next/image';
 
 const VerifiedBadge = ({ color = 'blue' }: { color?: 'blue' | 'yellow' | 'gold' }) => {
@@ -126,7 +127,13 @@ export const Post = ({ displayName, username, avatar, avatarImage, squareAvatar 
                         {content}
                     </div>
 
-                    {websiteUrl && <WebsiteContainer url={websiteUrl} />}
+                    {websiteUrl && (
+                        websiteUrl === '/embedded-site' ? (
+                            <JSONShowcase mode="demo" />
+                        ) : (
+                            <WebsiteContainer url={websiteUrl} />
+                        )
+                    )}
 
                     {/* Stats row - responsive for narrow screens */}
                     <div className="flex items-center justify-between mt-3 text-gray-500 -ml-2 gap-1">

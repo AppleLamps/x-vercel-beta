@@ -9,10 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/xai": "^1.0.0",
+    "@json-render/core": "file:./json-render/packages/core",
+    "@json-render/react": "file:./json-render/packages/react",
+    "ai": "^4.0.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
